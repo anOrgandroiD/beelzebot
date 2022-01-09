@@ -14,7 +14,7 @@ let phrases = JSON.parse(rawdata)
 const symbol = 'Ψ';
 
 client.on('ready', () => {
-    console.log(`CHAOS BOT IS LOGGED IN AS ${client.user.tag} AND READY TO TAKE OVER THE WORLD, BZZ!!!`)
+    console.log(`BEELZEBOT IS LOGGED IN AS ${client.user.tag} AND READY TO TAKE OVER THE WORLD, BZZ!!!`)
 })
 
 client.on('messageCreate', async message => {
