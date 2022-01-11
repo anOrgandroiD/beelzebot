@@ -5,6 +5,7 @@ const path = require('path')
 module.exports = {
     name: "beel",
     administrator: false,
+    soulDrainAmnt: 0,
 
     async execute(client, message, args) {
         let rawdata = fs.readFileSync(path.resolve(__dirname, '../../phrases.json'))
