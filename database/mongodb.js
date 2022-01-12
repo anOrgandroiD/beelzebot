@@ -43,21 +43,11 @@ module.exports.soulDrain = async function(userID, drainAmnt) {
 }
 
 module.exports.addCustomRole = async function(userID, role) {
-    while(true) {
-        let userDB = await usersDB.findOneAndUpdate(
-            { id: userID },
-            { $push: { roles: { name: role } } }
-        )
-        if(userDB) {
-            return userDB;
-        } else {
-            userDB = new usersDB({
-                id: userID,
-                tag: userTag
-            })
-            await userDB.save().catch(err => console.log(err))
-        }
-    }
+    let userDB = await usersDB.findOneAndUpdate(
+        { id: userID },
+        { $push: { roles: { name: role } } }
+    )
+    return userDB
 }
 
 module.exports.deleteCustomRole = async function(userID, role) {
