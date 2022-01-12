@@ -6,7 +6,7 @@ module.exports = {
     soulDrainAmnt: 0.5,
 
     async execute(client, message, args) {
-        const SOUL_DRAIM_AMNT = 0.5
+        const SOUL_DRAIN_AMNT = 0.5
         const MAX_ROLE_AMNT = 3
         const DEFAULT_COLOR = 0x979c9f
 
@@ -54,7 +54,7 @@ module.exports = {
         newRole.setPosition(message.member.roles.highest.rawPosition + 1)
 
         await client.data.addCustomRole(userID, roleName)
-        await client.data.soulDrain(userID, SOUL_DRAIM_AMNT)
+        await client.data.soulDrain(userID, SOUL_DRAIN_AMNT)
         message.member.roles.add(newRole)
         await message.reply("YOU SUMMONED A NEW ROLE")
     }
