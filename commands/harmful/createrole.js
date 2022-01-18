@@ -54,8 +54,9 @@ module.exports = {
         newRole.setPosition(message.member.roles.highest.rawPosition + 1)
 
         await client.data.addCustomRole(userID, roleName)
-        await client.data.soulDrain(userID, SOUL_DRAIN_AMNT)
+        totalDrainAmnt = Math.random() * SOUL_DRAIN_AMNT + 0.1
+        await client.data.soulDrain(userID, parseFloat(totalDrainAmnt.toFixed(2)))
         message.member.roles.add(newRole)
-        await message.reply("YOU SUMMONED A NEW ROLE")
+        await message.reply("YOU SUMMONED A NEW ROLE, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) + "%")
     }
 }

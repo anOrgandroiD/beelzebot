@@ -25,8 +25,9 @@ module.exports = {
         }
 
         if(child.roles.find(x => x.name === roleName) === undefined) {
-            await client.data.soulDrain(userID, SOUL_DRAIN_AMNT)
-            await message.reply("ROLE SUCCESSFULLY BANISHED... FOR A PRICE OF COURSE")
+            totalDrainAmnt = Math.random() * SOUL_DRAIN_AMNT + 0.1
+            await client.data.soulDrain(userID, parseFloat(totalDrainAmnt.toFixed(2)))
+            await message.reply("ROLE SUCCESSFULLY BANISHED... FOR " + totalDrainAmnt.toFixed(2) + "% OF YOUR SOUL, OF COURSE")
         } else {
             await message.reply("ROLE SUCCESSFULLY BANISHED")
         }
