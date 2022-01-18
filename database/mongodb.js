@@ -42,6 +42,19 @@ module.exports.soulDrain = async function(userID, drainAmnt) {
         return false
 }
 
+module.exports.soulRestore = async function(userID) {
+    let userDB = await usersDB.findOneAndUpdate(
+        { id: userID },
+        { $set:
+            { soul: 100 }
+        }
+    )
+    if(userDB)
+        return userDB
+    else
+        return false
+}
+
 module.exports.addCustomRole = async function(userID, role) {
     let userDB = await usersDB.findOneAndUpdate(
         { id: userID },
