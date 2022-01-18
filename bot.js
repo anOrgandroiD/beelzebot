@@ -6,7 +6,7 @@ const Discord = require('discord.js')
 mongoose = require('mongoose')
 
 const client = new Discord.Client({
-    intents: ['DIRECT_MESSAGES', 'GUILDS', 'GUILD_MESSAGES']
+    intents: ['DIRECT_MESSAGES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS']
 })
 
 client.events = new Discord.Collection()
