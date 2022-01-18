@@ -6,11 +6,14 @@ module.exports = {
     soulDrainAmnt: 0.25,
 
     async execute(client, message, args) {
+        const SOUL_DRAIN_AMNT = 0.25
+
         roleName = args[0]
         let users = [...message.mentions.users.values()]
         let modifiedRoleName = roleName.replace(/_/g, ' ')
         let memberRole = message.member.roles.cache.find(x => x.name === modifiedRoleName)
         let guildRole = message.guild.roles.cache.find(x => x.name === modifiedRoleName)
+        let totalDrainAmnt = 0
 
         if(guildRole === undefined) {
             await message.reply("THIS ROLE HAS NOT BEEN SUMMONED INTO EXISTENCE")
@@ -29,7 +32,9 @@ module.exports = {
             }
     
             message.member.roles.add(guildRole)
-            await message.reply("ROLE SUCCESSFULLY GIVEN")
+            totalDrainAmnt += Math.random() * SOUL_DRAIN_AMNT + 0.1
+            await message.reply("ROLE SUCCESSFULLY GIVEN, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) +"%")
+            await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
             return
         }
 
@@ -37,6 +42,7 @@ module.exports = {
         for(let i = 0; i < users.length; i++) {
             memberRole = message.guild.members.cache.get(users[i].id).roles.cache.find(x => x.name === modifiedRoleName)
             if(memberRole === undefined) {
+                totalDrainAmnt += Math.random() * SOUL_DRAIN_AMNT + 0.1
                 message.guild.members.cache.get(users[i].id).roles.add(guildRole)
                 count++
             }
@@ -45,9 +51,11 @@ module.exports = {
         if(count === 0) {
             await message.reply("NO USERS WERE GIVEN THE ROLE")
         } else if (count === 1) {
-            await message.reply("1 USER WAS GIVEN THE ROLE")
+            await message.reply("1 USER WAS GIVEN THE ROLE, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) +"%")
+            await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
         } else {
-            await message.reply(count + " USERS WERE GIVEN THE ROLE")
+            await message.reply(count + " USERS WERE GIVEN THE ROLE, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) +"%")
+            await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
         }
     }
 }
