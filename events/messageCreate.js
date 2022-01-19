@@ -6,7 +6,7 @@ module.exports = async(client, message) => {
     try {
         if(message.author.bot) return
 
-        let userDB = await client.data.getUserDB(message.author.id, message.author.tag)
+        let userDB = await client.data.getUserDB(message.author.id, message.guild.id, message.author.tag)
 
         if(!message.guild) {
             return message.channel.send("I DO NOT ANSWER PERSONALIZED MESSAGES, YOU MEAN NOTHING TO ME!!!")
