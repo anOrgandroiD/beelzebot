@@ -18,7 +18,7 @@ module.exports = {
         let list = await server.members.fetch()
 
         list.forEach(async member => {
-            await client.data.soulRestore(member.user.id)
+            await client.data.soulRestore(member.user.id, message.guild.id)
         })
         await message.reply("ALL USERS HAVE HAD THEIR SOULS COMPLETELY RESTORED")
     }
