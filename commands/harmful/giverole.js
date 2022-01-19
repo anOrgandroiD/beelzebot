@@ -32,9 +32,9 @@ module.exports = {
             }
     
             message.member.roles.add(guildRole)
-            totalDrainAmnt += Math.random() * SOUL_DRAIN_AMNT + 0.1
+            totalDrainAmnt += Math.random() * SOUL_DRAIN_AMNT + 0.01
             await message.reply("ROLE SUCCESSFULLY GIVEN, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) +"%")
-            await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
+            await client.data.soulDrain(message.author.id, message.guild.id, parseFloat(totalDrainAmnt.toFixed(2)))
             return
         }
 
@@ -42,7 +42,7 @@ module.exports = {
         for(let i = 0; i < users.length; i++) {
             memberRole = message.guild.members.cache.get(users[i].id).roles.cache.find(x => x.name === modifiedRoleName)
             if(memberRole === undefined) {
-                totalDrainAmnt += Math.random() * SOUL_DRAIN_AMNT + 0.1
+                totalDrainAmnt += Math.random() * SOUL_DRAIN_AMNT + 0.01
                 message.guild.members.cache.get(users[i].id).roles.add(guildRole)
                 count++
             }
@@ -52,10 +52,10 @@ module.exports = {
             await message.reply("NO USERS WERE GIVEN THE ROLE")
         } else if (count === 1) {
             await message.reply("1 USER WAS GIVEN THE ROLE, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) +"%")
-            await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
+            await client.data.soulDrain(message.author.id, message.guild.id, parseFloat(totalDrainAmnt.toFixed(2)))
         } else {
             await message.reply(count + " USERS WERE GIVEN THE ROLE, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) +"%")
-            await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
+            await client.data.soulDrain(message.author.id, message.guild.id, parseFloat(totalDrainAmnt.toFixed(2)))
         }
     }
 }

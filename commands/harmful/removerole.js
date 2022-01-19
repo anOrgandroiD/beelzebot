@@ -18,8 +18,8 @@ module.exports = {
         }
 
         message.member.roles.remove(role)
-        totalDrainAmnt = Math.random() * SOUL_DRAIN_AMNT + 0.1
-        await client.data.soulDrain(message.author.id, parseFloat(totalDrainAmnt.toFixed(2)))
+        totalDrainAmnt = Math.random() * SOUL_DRAIN_AMNT + 0.01
+        await client.data.soulDrain(message.author.id, message.guild.id, parseFloat(totalDrainAmnt.toFixed(2)))
         await message.reply("ROLE SUCCESSFULLY REMOVED, DRAINING YOUR SOUL BY " + totalDrainAmnt.toFixed(2) + "%")
     }
 }
